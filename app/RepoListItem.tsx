@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
 
-export const RepoListItem = () => {
+type Props = {
+  repo: any;
+};
+
+export const RepoListItem = ({repo}: Props) => {
   return (
-    <div>
-        <h3>リポジトリ名</h3>
-        <p>オーナー名</p>
-    </div>
-  )
-}
+    <li>
+      <h3>リポジトリ名</h3>
+      <p>オーナー名</p>
+      <p>{repo.full_name}</p>
+    </li>
+  );
+};

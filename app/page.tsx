@@ -1,7 +1,6 @@
-import Image from 'next/image'
-import { InputRepo } from './InputRepo'
-import { RepoList } from './RepoList'
-import { Pagination } from './Pagination'
+import { InputRepo } from "./InputRepo";
+import { RepoList } from "./RepoList";
+import { Pagination } from "./Pagination";
 
 export default function Home() {
   return (
@@ -10,5 +9,5 @@ export default function Home() {
       <RepoList />
       <Pagination />
     </main>
-  )
+  );
 }

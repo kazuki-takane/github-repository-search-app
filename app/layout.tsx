@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Header } from "./Header";
+import AppProvider from "./provider";
 
 const inter = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <Header />
-        {children}
+        <AppProvider>
+          <Header />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
