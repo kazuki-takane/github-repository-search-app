@@ -10,7 +10,7 @@ export const RepoList = () => {
   return (
     <ul>
       {repos.map((repo) => (
-        <RepoListItem repo={repo} />
+        <RepoListItem key={repo.id} repo={repo} />
       ))}
     </ul>
   );
