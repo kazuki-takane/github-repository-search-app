@@ -1,12 +1,17 @@
-import React from 'react'
-import { RepoListItem } from './RepoListItem'
+"use client";
+import React from "react";
+import { RepoListItem } from "./RepoListItem";
+import { useRecoilValue } from "recoil";
+import { searchedRepos } from "./state/searchedRepos";
 
 export const RepoList = () => {
+  const repos = useRecoilValue<Array<any>>(searchedRepos);
+  console.log(repos);
   return (
     <ul>
-        <RepoListItem />
-        <RepoListItem />
-        <RepoListItem />
+      {repos.map((repo) => (
+        <RepoListItem key={repo.id} repo={repo} />
+      ))}
     </ul>
-  )
-}
+  );
+};
