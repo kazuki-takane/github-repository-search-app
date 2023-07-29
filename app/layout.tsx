@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Header } from "./Header";
 import AppProvider from "./provider";
+import NextAuthProvider from "./providers/NextAuth";
+
 
 const inter = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -19,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+      <NextAuthProvider>
         <AppProvider>
           <Header />
           {children}
         </AppProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
