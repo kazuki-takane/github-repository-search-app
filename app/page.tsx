@@ -1,7 +1,8 @@
 import { InputRepo } from "./InputRepo";
 import { RepoList } from "./RepoList";
 import { Pagination } from "./Pagination";
-import { RepoDetailModal } from "./RepoDetailModal";
+import { RepoDetailDialog } from "../components/RepoDetailDialog";
+import { LoginUserDialog } from "@/components/LoginUserDialog";
 
 export default function Home() {
   return (
@@ -11,7 +12,8 @@ export default function Home() {
         <RepoList />
         <Pagination />
       </div>
-      <RepoDetailModal />
+      <LoginUserDialog />
+      <RepoDetailDialog />
     </main>
   );
 }

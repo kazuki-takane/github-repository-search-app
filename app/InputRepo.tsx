@@ -8,8 +8,8 @@ export const InputRepo = memo(() => {
   const [inputValue, setInputValue] = useState<string>("");
   const setRepos = useSetRecoilState(searchedRepos);
 
-  const fetcher = async (url: string) =>
-    await fetch(url)
+  const fetcher = (url: string) =>
+    fetch(url)
       .then((res) => res.json())
       .then((result) => result.items)
       .then((items) => setRepos(items));
