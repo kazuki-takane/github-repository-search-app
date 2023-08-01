@@ -15,7 +15,7 @@ export const RepoList = () => {
   const displayedRepos = repos.slice().splice(numOfCurrentPage * 10, 10);
 
   return (
-    <div>
+    <div className="mt-8">
       {repos.length ? (
         <div>
           <ul>

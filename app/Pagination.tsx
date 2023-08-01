@@ -18,14 +18,22 @@ export const Pagination = ({
   console.log(numOfPages);
 
   return (
-    <ul className="flex">
+    <ul className="flex justify-center items-center mt-8 pb-16">
       {[...Array(numOfPages)].map((_, i) =>
         currentPage === i ? (
-          <li className="ml-8 bg-slate-300 cursor-pointer" key={i} onClick={() => handleClick(i)}>
+          <li
+            className="border shadow cursor-pointer rounded-full w-8 h-8 leading-8 mx-2 bg-cyan-400 border-cyan-500 text-white"
+            key={i}
+            onClick={() => handleClick(i)}
+          >
             {i + 1}
           </li>
         ) : (
-          <li className="ml-8 cursor-pointer" key={i} onClick={() => handleClick(i)}>
+          <li
+            className="border shadow cursor-pointer rounded-full w-8 h-8 leading-8 mx-2 bg-white"
+            key={i}
+            onClick={() => handleClick(i)}
+          >
             {i + 1}
           </li>
         )
