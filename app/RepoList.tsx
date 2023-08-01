@@ -5,10 +5,12 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { numOfPagesInRepos, searchedRepos } from "./state/searchedRepos";
 import { Pagination } from "./Pagination";
 import { currentPage } from "./state/currentPage";
+import { isSearched } from "./state/isSearched";
 
 export const RepoList = () => {
   const repos = useRecoilValue<Array<any>>(searchedRepos);
   const numOfPages = useRecoilValue<number>(numOfPagesInRepos);
+  const haveSearched = useRecoilValue<boolean>(isSearched);
   console.log(repos);
   const [numOfCurrentPage, setNumOfCurrentPage] = useRecoilState(currentPage);
   console.log(currentPage);
@@ -30,7 +32,7 @@ export const RepoList = () => {
           />
         </div>
       ) : (
-        <p>見つかりませんでした</p>
+        <p>{haveSearched ? "見つかりませんでした" : ""}</p>
       )}
     </div>
   );

@@ -32,7 +32,7 @@ export const LoginUserDialog = () => {
                   alt={`${userInfo.login}`}
                 />
               </div>
-              <h3 className="text-lg md:text-2xl">{userInfo.login}</h3>
+              <h3 className="text-base md:text-2xl break-words w-3/5">{userInfo.login}</h3>
             </div>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               フォロー数:
