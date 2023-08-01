@@ -1,12 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
 import { Header } from "./Header";
 import AppProvider from "./provider";
 import NextAuthProvider from "./providers/NextAuth";
+import { BodyForStopScroll } from "./BodyForStopScroll";
 
-
-const inter = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,14 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
       <NextAuthProvider>
         <AppProvider>
-          <Header />
-          {children}
+          <BodyForStopScroll>
+              <Header />
+              {children}
+          </BodyForStopScroll>
         </AppProvider>
-        </NextAuthProvider>
-      </body>
+      </NextAuthProvider>
     </html>
   );
 }

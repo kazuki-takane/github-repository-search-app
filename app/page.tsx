@@ -5,8 +5,8 @@ import { LoginUserDialog } from "@/components/LoginUserDialog";
 
 export default function Home() {
   return (
-    <main>
-      <div className="container w-11/12 max-w-screen-lg mx-auto text-center">
+    <main className="bg-main pt-12 min-h-screen">
+      <div className="container w-11/12 md:w-3/6 max-w-screen-lg mx-auto text-center mt-5">
         <InputRepo />
         <RepoList />
       </div>
