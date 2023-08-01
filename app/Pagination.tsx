@@ -13,6 +13,7 @@ export const Pagination = ({
 }: Props) => {
   const handleClick = (i: number) => {
     setNumOfCurrentPage(i);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   console.log(currentPage);
   console.log(numOfPages);

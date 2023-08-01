@@ -29,7 +29,7 @@ export const RepoDetailDialog = () => {
                   alt={`${repo.owner.login}`}
                 />
               </div>
-              <h3 className="text-lg md:text-2xl">{repo.name}</h3>
+              <h3 className="text-base md:text-2xl break-words w-3/5">{repo.name}</h3>
             </div>
             <a
               className="mt-8  text-sm md:text-xl block underline break-words decoration-cyan-500 text-cyan-500 hover:opacity-70"
@@ -40,26 +40,26 @@ export const RepoDetailDialog = () => {
               {repo.html_url}
             </a>
             <p className="mt-8 border-b pb-1 text-sm md:text-lg">
-              Owner: <span className="ml-2 text-lg md:text-xl">{repo.owner.login}</span>
+              Owner: <span className="ml-2 text-base md:text-xl">{repo.owner.login}</span>
             </p>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               プロジェクト言語:
-              <span className="ml-2 text-lg md:text-xl">{repo.language}</span>
+              <span className="ml-2 text-base md:text-xl">{repo.language}</span>
             </p>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               Star数:
-              <span className="ml-2 text-lg md:text-xl">{repo.stargazers_count}</span>
+              <span className="ml-2 text-base md:text-xl">{repo.stargazers_count}</span>
             </p>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               Watcher数:
-              <span className="ml-2 text-lg md:text-xl">{repo.watchers_count}</span>
+              <span className="ml-2 text-base md:text-xl">{repo.watchers_count}</span>
             </p>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
-              Fork数: <span className="ml-2 text-lg md:text-xl">{repo.forks_count}</span>
+              Fork数: <span className="ml-2 text-base md:text-xl">{repo.forks_count}</span>
             </p>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               Issue数:
-              <span className="ml-2 text-lg md:text-xl">{repo.open_issues_count}</span>
+              <span className="ml-2 text-base md:text-xl">{repo.open_issues_count}</span>
             </p>
             <button
               className="absolute top-4 right-4 p-1 text-xs md:text-base text-white rounded bg-cyan-500 hover:opacity-70"
