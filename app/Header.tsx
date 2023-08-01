@@ -35,17 +35,22 @@ export const Header = () => {
   );
 
   return (
-    <header className="fixed bg-white z-10">
-      <p>Header</p>
-      {session ? <Logout /> : <Login />}
-      <div onClick={() => trigger()}>
-        <img
-          className="w-12 rounded-full"
-          src={session?.user?.image ?? undefined}
-          alt={session?.user?.name ?? "guest"}
-        />
-      </div>
-      <p>{session?.user?.name ?? "guest"}</p>
+    <header className="fixed flex justify-end items-center bg-white z-10 w-full h-12 shadow">
+      {session ? (
+        <div className="flex items-center">
+          <Logout />
+          <div className="mr-4 cursor-pointer shadow-md rounded-full hover:opacity-70" onClick={() => trigger()}>
+            <img
+              className="w-8 rounded-full"
+              src={session?.user?.image ?? undefined}
+              alt={session?.user?.name ?? "ゲスト"}
+            />
+          </div>
+        </div>
+      ) : (
+        <Login />
+      )}
+      <p className="text-xs md:text-base mr-4">{session?.user?.name ?? "ゲスト"}でログイン中</p>
     </header>
   );
 };

@@ -12,19 +12,19 @@ export const RepoListItem = ({ repo }: Props) => {
   const setClickedRepo = useSetRecoilState(clickedRepo);
   const handleClick = (repo: any) => {
     setIsOpen(true);
-    setClickedRepo(repo)
-  }
+    setClickedRepo(repo);
+  };
   return (
-    <li>
-      <div className="flex items-center" onClick={()=>handleClick(repo)}>
-        <div className="w-12 rounded-full">
+    <li className="border rounded bg-white mt-4 p-4 shadow cursor-pointer">
+      <div className="flex items-center" onClick={() => handleClick(repo)}>
+        <div className="w-12 rounded-full mr-4">
           <img
             className="rounded-full"
             src={`${repo.owner.avatar_url}`}
             alt=""
           />
         </div>
-        <h3>{repo.full_name}</h3>
+        <h3>{repo.name}</h3>
       </div>
     </li>
   );
