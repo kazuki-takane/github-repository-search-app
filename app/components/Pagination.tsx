@@ -1,9 +1,10 @@
 import React from "react";
+import { SetterOrUpdater } from "recoil";
 
 type Props = {
   currentPage: number;
   numOfPages: number;
-  setNumOfCurrentPage: any;
+  setNumOfCurrentPage: SetterOrUpdater<number>;
 };
 
 export const Pagination = ({
@@ -13,7 +14,9 @@ export const Pagination = ({
 }: Props) => {
   const handleClick = (i: number) => {
     setNumOfCurrentPage(i);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   console.log(currentPage);
   console.log(numOfPages);
 

@@ -1,18 +1,26 @@
 "use client";
-import React, { useState, memo } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useState } from "react";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import useSWRMutation from "swr/mutation";
-import { searchedRepos } from "./state/searchedRepos";
 
-export const InputRepo = memo(() => {
+import { searchedRepos } from "../state/searchedRepos";
+import { isSearched } from "../state/isSearched";
+import { currentPage } from "../state/currentPage";
+import { RepoData } from "../types/types";
+
+export const InputRepo = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const setRepos = useSetRecoilState(searchedRepos);
+  const setRepos:SetterOrUpdater<Array<RepoData>> = useSetRecoilState(searchedRepos);
+  const setIsSearched:SetterOrUpdater<boolean> = useSetRecoilState(isSearched);
+  const setCurrentPage:SetterOrUpdater<number> = useSetRecoilState(currentPage);
 
   const fetcher = (url: string) =>
     fetch(url)
       .then((res) => res.json())
       .then((result) => result.items)
-      .then((items) => setRepos(items));
+      .then((items) => setRepos(items))
+      .then(() => setIsSearched(true))
+      .then(() => setCurrentPage(0));
 
   const { data, trigger, isMutating, error } = useSWRMutation(
     `https://api.github.com/search/repositories?q=${inputValue}`,
@@ -52,4 +60,4 @@ export const InputRepo = memo(() => {
       </div>
     </div>
   );
-});
+};
