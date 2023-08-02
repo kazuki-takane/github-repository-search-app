@@ -1,6 +1,7 @@
 import { atom, selector } from "recoil";
+import { RepoData } from "../types/types";
 
-export const searchedRepos = atom<Array<any>>({
+export const searchedRepos = atom<Array<RepoData>>({
   key: "searchedRepos",
   default: [],
 });

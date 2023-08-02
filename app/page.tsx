@@ -1,7 +1,7 @@
-import { InputRepo } from "./InputRepo";
-import { RepoList } from "./RepoList";
-import { RepoDetailDialog } from "../components/RepoDetailDialog";
-import { LoginUserDialog } from "@/components/LoginUserDialog";
+import { InputRepo } from "./components/InputRepo";
+import { RepoList } from "./components/RepoList";
+import { RepoDetailDialog } from "./components/dialog/RepoDetailDialog";
+import { LoginUserDialog } from "@/app/components/dialog/LoginUserDialog";
 
 export default function Home() {
   return (

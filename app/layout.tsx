@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
+
 import { Header } from "./Header";
-import AppProvider from "./provider";
+import RecoilProvider from "./providers/RecoilProvider";
 import NextAuthProvider from "./providers/NextAuth";
 import { BodyForStopScroll } from "./BodyForStopScroll";
 
@@ -19,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <NextAuthProvider>
-        <AppProvider>
+        <RecoilProvider>
           <BodyForStopScroll>
               <Header />
               {children}
           </BodyForStopScroll>
-        </AppProvider>
+        </RecoilProvider>
       </NextAuthProvider>
     </html>
   );

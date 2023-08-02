@@ -1,21 +1,27 @@
 "use client";
 import React from "react";
-import Login from "./Login";
-import Logout from "./Logout";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import useSWRMutation from "swr/mutation";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
+
+import Login from "./components/login/Login";
+import Logout from "./components/login/Logout";
 import { loginUserInfo } from "./state/loginUserInfo";
 import { loginUserRepos } from "./state/loginUserRepos";
 import { isUserDialogOpen } from "./state/isUserDialogOpen";
 import { isRepoDialogOpen } from "./state/isRepoDialogOpen";
+import { User, UserRepos } from "./types/types";
 
 export const Header = () => {
   const { data: session } = useSession();
-  const setUser = useSetRecoilState(loginUserInfo);
-  const setIsUserDialogOpen = useSetRecoilState(isUserDialogOpen);
-  const setUserRepos = useSetRecoilState(loginUserRepos);
-  const setRepoDialogOpen = useSetRecoilState(isRepoDialogOpen);
+  const setUser: SetterOrUpdater<User> = useSetRecoilState(loginUserInfo);
+  const setIsUserDialogOpen: SetterOrUpdater<boolean> =
+    useSetRecoilState(isUserDialogOpen);
+  const setUserRepos: SetterOrUpdater<Array<UserRepos>> =
+    useSetRecoilState(loginUserRepos);
+  const setRepoDialogOpen: SetterOrUpdater<boolean> =
+    useSetRecoilState(isRepoDialogOpen);
 
   const fetcher = (url: string) => {
     const headers = {
@@ -47,13 +53,15 @@ export const Header = () => {
         <div className="flex items-center">
           <Logout />
           <div
-            className="mr-4 cursor-pointer shadow-md rounded-full hover:opacity-70"
+            className="mr-4 w-8 cursor-pointer shadow-md rounded-full hover:opacity-70"
             onClick={handleUserClick}
           >
-            <img
+            <Image
               className="w-8 rounded-full"
-              src={session?.user?.image ?? undefined}
+              src={session?.user?.image ?? ""}
               alt={session?.user?.name ?? "ゲスト"}
+              width={32}
+              height={32}
             />
           </div>
         </div>

@@ -1,18 +1,21 @@
 "use client";
 import React from "react";
-import { RepoListItem } from "./RepoListItem";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { numOfPagesInRepos, searchedRepos } from "./state/searchedRepos";
+
+import { RepoListItem } from "./RepoListItem";
 import { Pagination } from "./Pagination";
-import { currentPage } from "./state/currentPage";
-import { isSearched } from "./state/isSearched";
+import { numOfPagesInRepos, searchedRepos } from "../state/searchedRepos";
+import { currentPage } from "../state/currentPage";
+import { isSearched } from "../state/isSearched";
+import { RepoData } from "../types/types";
 
 export const RepoList = () => {
-  const repos = useRecoilValue<Array<any>>(searchedRepos);
+  const repos = useRecoilValue<Array<RepoData>>(searchedRepos);
   const numOfPages = useRecoilValue<number>(numOfPagesInRepos);
   const haveSearched = useRecoilValue<boolean>(isSearched);
+  const [numOfCurrentPage, setNumOfCurrentPage] =
+    useRecoilState<number>(currentPage);
   console.log(repos);
-  const [numOfCurrentPage, setNumOfCurrentPage] = useRecoilState(currentPage);
   console.log(currentPage);
   const displayedRepos = repos.slice().splice(numOfCurrentPage * 10, 10);
 
