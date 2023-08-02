@@ -1,13 +1,17 @@
 "use client";
 import { useRecoilState, useRecoilValue } from "recoil";
+import Link from 'next/link'
+import Image from "next/image";
+
 import { isUserDialogOpen } from "@/app/state/isUserDialogOpen";
 import { loginUserInfo } from "@/app/state/loginUserInfo";
 import { loginUserRepos } from "@/app/state/loginUserRepos";
+import { User, UserRepos } from "@/app/types/types";
 
 export const LoginUserDialog = () => {
-  const [isOpen, setIsOpen] = useRecoilState(isUserDialogOpen);
-  const userInfo = useRecoilValue(loginUserInfo);
-  const repos = useRecoilValue(loginUserRepos);
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(isUserDialogOpen);
+  const userInfo = useRecoilValue<User>(loginUserInfo);
+  const repos = useRecoilValue<Array<UserRepos>>(loginUserRepos);
   console.log(repos);
 
   const handleExceptClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -26,13 +30,17 @@ export const LoginUserDialog = () => {
           <div className="bg-white fixed inset-0 m-auto w-11/12 max-w-screen-sm h-5/6 rounded-lg p-4 md:p-8 overflow-auto">
             <div className="flex items-center">
               <div className="w-16 md:w-24 mr-8">
-                <img
+                <Image
                   className="rounded-full"
                   src={`${userInfo.avatar_url}`}
                   alt={`${userInfo.login}`}
+                  width={64}
+                  height={64}
                 />
               </div>
-              <h3 className="text-base md:text-2xl break-words w-3/5">{userInfo.login}</h3>
+              <h3 className="text-base md:text-2xl break-words w-3/5">
+                {userInfo.login}
+              </h3>
             </div>
             <p className="mt-3 border-b pb-1 text-sm md:text-lg">
               フォロー数:
@@ -53,16 +61,19 @@ export const LoginUserDialog = () => {
             <p className="mt-3 text-sm md:text-lg">リポジトリ一覧</p>
             <ul className="mt-2">
               {repos.map((repo) => (
-                <li className="border rounded bg-white mt-4 p-2 md:p-4 shadow">
-                  <p key={repo.id}>{repo.name}</p>
-                  <a
+                <li
+                  key={repo.id}
+                  className="border rounded bg-white mt-4 p-2 md:p-4 shadow"
+                >
+                  <p>{repo.name}</p>
+                  <Link
                     className="text-xs md:text-base decoration-cyan-500 text-cyan-500 hover:opacity-70 break-words"
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {repo.html_url}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

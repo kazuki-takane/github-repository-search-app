@@ -1,9 +1,11 @@
 "use client";
 import React, { ReactNode } from "react";
 import { useRecoilValue } from "recoil";
+import { Noto_Sans_JP } from "next/font/google";
+
 import { isRepoDialogOpen } from "./state/isRepoDialogOpen";
 import { isUserDialogOpen } from "./state/isUserDialogOpen";
-import { Noto_Sans_JP } from "next/font/google";
+
 const notoSans = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const BodyForStopScroll = ({ children }: { children: ReactNode }) => {
@@ -12,7 +14,9 @@ export const BodyForStopScroll = ({ children }: { children: ReactNode }) => {
 
   return (
     <body
-      className={`${notoSans.className} text-sm md:text-base text-slate-900 tracking-wide ${
+      className={`${
+        notoSans.className
+      } text-sm md:text-base text-slate-900 tracking-wide ${
         isRepoOpen && "overflow-hidden"
       } ${isUserOpen && "overflow-hidden"}`}
     >
