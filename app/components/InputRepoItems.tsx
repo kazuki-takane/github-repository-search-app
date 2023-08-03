@@ -55,7 +55,7 @@ export const InputRepoItems = memo(() => {
         onKeyDown={pressEnter}
       />
       <button
-        className="bg-cyan-500 text-white rounded py-1 px-2 hover:opacity-70 w-12"
+        className="bg-cyan-500 text-white rounded py-1 px-2 hover:opacity-70 w-16"
         onClick={handleSearch}
       >
         {searching ? "検索中" : "検索"}
