@@ -49,13 +49,13 @@ export const InputRepoItems = memo(() => {
   return (
     <div className="mt-4 flex justify-center items-center">
       <input
-        className="border-2 rounded border-slate-200 focus:outline-1 outline-cyan-400 text-base md:text-lg p-1 mr-4"
+        className="border-2 rounded border-slate-200 focus:outline-1 outline-cyan-400 text-base md:text-lg p-1 mr-4 w-8/12"
         type="text"
         onChange={handleChange}
         onKeyDown={pressEnter}
       />
       <button
-        className="bg-cyan-500 text-white rounded py-1 px-2 hover:opacity-70"
+        className="bg-cyan-500 text-white rounded py-1 px-2 hover:opacity-70 w-12"
         onClick={handleSearch}
       >
         {searching ? "検索中" : "検索"}
