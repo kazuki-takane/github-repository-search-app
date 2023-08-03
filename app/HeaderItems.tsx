@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
@@ -13,7 +13,7 @@ import { isRepoDialogOpen } from "./state/isRepoDialogOpen";
 import { User, UserRepos } from "./types/types";
 import { getUserInfo, getUserRepos } from "./Header";
 
-export const HeaderItems = () => {
+export const HeaderItems = memo(() => {
   const { data: session } = useSession();
   const setUser: SetterOrUpdater<User> = useSetRecoilState(loginUserInfo);
   const setUserRepos: SetterOrUpdater<Array<UserRepos>> =
@@ -25,6 +25,7 @@ export const HeaderItems = () => {
   const setRepoDialogOpen: SetterOrUpdater<boolean> =
     useSetRecoilState(isRepoDialogOpen);
 
+    // ユーザーアイコンをタップするとユーザーの情報とリポジトリをfetchしてダイアログで表示
   const handleUserClick = async () => {
     setRepoDialogOpen(false);
     setIsUserDialogOpen(true);
@@ -45,7 +46,7 @@ export const HeaderItems = () => {
           >
             <Image
               className="w-8 rounded-full"
-              src={session?.user?.image ?? ""}
+              src={session?.user?.image ?? "/noimage.png"}
               alt={session?.user?.name ?? "ゲスト"}
               width={32}
               height={32}
@@ -61,4 +62,4 @@ export const HeaderItems = () => {
       </div>
     </div>
   );
-};
+});

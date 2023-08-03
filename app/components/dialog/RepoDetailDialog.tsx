@@ -1,16 +1,18 @@
 "use client";
 import { useRecoilState, useRecoilValue } from "recoil";
-import Link from 'next/link'
+import Link from "next/link";
 import Image from "next/image";
 
 import { isRepoDialogOpen } from "../../state/isRepoDialogOpen";
 import { clickedRepo } from "../../state/clickedRepo";
 import { RepoData } from "@/app/types/types";
+import { memo } from "react";
 
-export const RepoDetailDialog = () => {
+export const RepoDetailDialog = memo(() => {
   const [isOpen, setIsOpen] = useRecoilState<boolean>(isRepoDialogOpen);
   const repo = useRecoilValue<RepoData>(clickedRepo);
 
+  //ダイアログ以外をクリックするとダイアログを閉じる
   const handleExceptClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
       setIsOpen(false);
@@ -92,4 +94,4 @@ export const RepoDetailDialog = () => {
       )}
     </>
   );
-};
+});

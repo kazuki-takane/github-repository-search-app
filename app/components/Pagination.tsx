@@ -14,11 +14,9 @@ export const Pagination = ({
 }: Props) => {
   const handleClick = (i: number) => {
     setNumOfCurrentPage(i);
+    //ページネーションをクリックしたらページの一番上までスクロール
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  console.log(currentPage);
-  console.log(numOfPages);
 
   return (
     <ul className="flex justify-center items-center mt-8 pb-16">

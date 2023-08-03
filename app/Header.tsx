@@ -3,6 +3,7 @@ import React from "react";
 import { HeaderItems } from "./HeaderItems";
 import { Session } from "next-auth";
 
+// ログインユーザーの情報をfetchする関数
 export const getUserInfo = async (session: Session | null) => {
   const res = await fetch("https://api.github.com/user", {
     headers: {
@@ -16,6 +17,7 @@ export const getUserInfo = async (session: Session | null) => {
   return result;
 };
 
+// ログインユーザーのリポジトリ一覧をfetchする関数
 export const getUserRepos = async (session: Session | null) => {
   const res = await fetch("https://api.github.com/user/repos", {
     headers: {

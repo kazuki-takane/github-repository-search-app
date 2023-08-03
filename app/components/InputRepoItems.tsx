@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from "recoil";
 
 import { searchedRepos } from "../state/searchedRepos";
@@ -8,7 +8,7 @@ import { currentPage } from "../state/currentPage";
 import { RepoData } from "../types/types";
 import { searchRepos } from "./InputRepo";
 
-export const InputRepoItems = () => {
+export const InputRepoItems = memo(() => {
   const [inputValue, setInputValue] = useState<string>("");
   const setRepos: SetterOrUpdater<Array<RepoData>> =
     useSetRecoilState(searchedRepos);
@@ -20,6 +20,7 @@ export const InputRepoItems = () => {
     setInputValue(e.target.value);
   };
 
+  //検索ボタンクリックでリポジトリを検索する
   const handleSearch = async () => {
     if (inputValue === "") {
       return;
@@ -31,6 +32,7 @@ export const InputRepoItems = () => {
     setCurrentPage(0);
   };
 
+  //Enterでもリポジトリを検索する
   const pressEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (inputValue === "") {
       return;
@@ -43,6 +45,7 @@ export const InputRepoItems = () => {
       setCurrentPage(0);
     }
   };
+
   return (
     <div className="mt-4 flex justify-center items-center">
       <input
@@ -59,4 +62,4 @@ export const InputRepoItems = () => {
       </button>
     </div>
   );
-};
+});

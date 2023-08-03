@@ -7,13 +7,14 @@ import { isUserDialogOpen } from "@/app/state/isUserDialogOpen";
 import { loginUserInfo } from "@/app/state/loginUserInfo";
 import { loginUserRepos } from "@/app/state/loginUserRepos";
 import { User, UserRepos } from "@/app/types/types";
+import { memo } from "react";
 
-export const LoginUserDialog = () => {
+export const LoginUserDialog = memo(() => {
   const [isOpen, setIsOpen] = useRecoilState<boolean>(isUserDialogOpen);
   const userInfo = useRecoilValue<User>(loginUserInfo);
   const userRepos = useRecoilValue<Array<UserRepos>>(loginUserRepos);
-  console.log(userRepos);
 
+  //ダイアログ以外をクリックするとダイアログを閉じる
   const handleExceptClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
       setIsOpen(false);
@@ -92,4 +93,4 @@ export const LoginUserDialog = () => {
       )}
     </>
   );
-};
+});
