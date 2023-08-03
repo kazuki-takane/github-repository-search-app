@@ -16,7 +16,7 @@ export const RepoList = memo(() => {
   const [numOfCurrentPage, setNumOfCurrentPage] =
     useRecoilState<number>(currentPage);
 
-    // 検索されたリポジトリを10件ずつ表示するための配列
+  // 検索されたリポジトリを10件ずつ表示するための配列
   const displayedRepos = repos.slice().splice(numOfCurrentPage * 10, 10);
 
   return (
@@ -45,3 +45,5 @@ export const RepoList = memo(() => {
     </div>
   );
 });
+
+RepoList.displayName = "RepoList";
