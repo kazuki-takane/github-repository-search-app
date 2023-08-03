@@ -94,3 +94,5 @@ export const LoginUserDialog = memo(() => {
     </>
   );
 });
+
+LoginUserDialog.displayName = "LoginUserDialog";

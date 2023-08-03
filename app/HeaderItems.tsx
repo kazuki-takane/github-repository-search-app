@@ -63,3 +63,5 @@ export const HeaderItems = memo(() => {
     </div>
   );
 });
+
+HeaderItems.displayName = "HeaderItems";
