@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { SetterOrUpdater, useRecoilState, useSetRecoilState } from "recoil";
 
 import { searchedRepos } from "../state/searchedRepos";
-import { isSearched } from "../state/isSearched";
+import { isSearching } from "../state/isSearching";
 import { currentPage } from "../state/currentPage";
 import { RepoData } from "../types/types";
 import { searchRepos } from "./InputRepo";
@@ -12,7 +12,7 @@ export const InputRepoItems = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const setRepos: SetterOrUpdater<Array<RepoData>> =
     useSetRecoilState(searchedRepos);
-  const setIsSearched: SetterOrUpdater<boolean> = useSetRecoilState(isSearched);
+  const [searching, setSearching] = useRecoilState(isSearching);
   const setCurrentPage: SetterOrUpdater<number> =
     useSetRecoilState(currentPage);
 
@@ -21,18 +21,26 @@ export const InputRepoItems = () => {
   };
 
   const handleSearch = async () => {
+    if (inputValue === "") {
+      return;
+    }
+    setSearching(true);
     const searchedRepoList = await searchRepos(inputValue);
-    await setRepos(searchedRepoList);
-    await setIsSearched(true);
-    await setCurrentPage(0);
+    setRepos(searchedRepoList);
+    setSearching(false);
+    setCurrentPage(0);
   };
 
   const pressEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (inputValue === "") {
+      return;
+    }
     if (e.key === "Enter") {
+      setSearching(true);
       const searchedRepoList = await searchRepos(inputValue);
-      await setRepos(searchedRepoList);
-      await setIsSearched(true);
-      await setCurrentPage(0);
+      setRepos(searchedRepoList);
+      setSearching(false);
+      setCurrentPage(0);
     }
   };
   return (
@@ -47,7 +55,7 @@ export const InputRepoItems = () => {
         className="bg-cyan-500 text-white rounded py-1 px-2 hover:opacity-70"
         onClick={handleSearch}
       >
-        検索する
+        {searching ? "検索中" : "検索"}
       </button>
     </div>
   );

@@ -27,11 +27,11 @@ export const HeaderItems = () => {
 
   const handleUserClick = async () => {
     setRepoDialogOpen(false);
+    setIsUserDialogOpen(true);
     const UserInfoJson = await getUserInfo(session);
-    await setUser(UserInfoJson);
+    setUser(UserInfoJson);
     const UserReposJson = await getUserRepos(session);
-    await setUserRepos(UserReposJson);
-    await setIsUserDialogOpen(true);
+    setUserRepos(UserReposJson);
   };
 
   return (
@@ -55,9 +55,9 @@ export const HeaderItems = () => {
       ) : (
         <Login />
       )}
-      <div className="text-xs md:text-base mr-4">
-        <p>{session?.user?.name ?? "ゲスト"}</p>
-        <p>でログイン中</p>
+      <div className="mr-4">
+        <p className="text-xs md:text-base">{session?.user?.name ?? "ゲスト"}</p>
+        <p className="text-xs md:text-sm">でログイン中</p>
       </div>
     </div>
   );
