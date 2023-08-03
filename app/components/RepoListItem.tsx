@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import Image from "next/image";
 
@@ -6,7 +6,7 @@ import { isRepoDialogOpen } from "../state/isRepoDialogOpen";
 import { clickedRepo } from "../state/clickedRepo";
 import { RepoData } from "../types/types";
 
-export const RepoListItem = ({ repo }: { repo: RepoData }) => {
+export const RepoListItem = memo(({ repo }: { repo: RepoData }) => {
   const setIsOpen: SetterOrUpdater<boolean> =
     useSetRecoilState(isRepoDialogOpen);
   const setClickedRepo: SetterOrUpdater<RepoData> =
@@ -33,4 +33,4 @@ export const RepoListItem = ({ repo }: { repo: RepoData }) => {
       </div>
     </li>
   );
-};
+});

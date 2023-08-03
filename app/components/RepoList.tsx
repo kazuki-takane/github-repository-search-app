@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import { RepoListItem } from "./RepoListItem";
@@ -9,14 +9,14 @@ import { currentPage } from "../state/currentPage";
 import { isSearching } from "../state/isSearching";
 import { RepoData } from "../types/types";
 
-export const RepoList = () => {
+export const RepoList = memo(() => {
   const repos = useRecoilValue<Array<RepoData>>(searchedRepos);
   const numOfPages = useRecoilValue<number>(numOfPagesInRepos);
   const searching = useRecoilValue<boolean | null>(isSearching);
   const [numOfCurrentPage, setNumOfCurrentPage] =
     useRecoilState<number>(currentPage);
-  console.log(repos);
-  console.log(currentPage);
+
+    // 検索されたリポジトリを10件ずつ表示するための配列
   const displayedRepos = repos.slice().splice(numOfCurrentPage * 10, 10);
 
   return (
@@ -37,10 +37,11 @@ export const RepoList = () => {
         </div>
       ) : (
         <div>
+          {/* 初期値のnullの場合何も表示しない */}
           {searching === null && <p></p>}
           {searching === false && <p>見つかりませんでした</p>}
         </div>
       )}
     </div>
   );
-};
+});
