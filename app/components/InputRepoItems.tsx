@@ -63,3 +63,5 @@ export const InputRepoItems = memo(() => {
     </div>
   );
 });
+
+InputRepoItems.displayName = "InputRepoItems";

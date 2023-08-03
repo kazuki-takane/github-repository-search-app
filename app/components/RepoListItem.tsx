@@ -34,3 +34,5 @@ export const RepoListItem = memo(({ repo }: { repo: RepoData }) => {
     </li>
   );
 });
+
+RepoListItem.displayName = "RepoListItem";

@@ -95,3 +95,5 @@ export const RepoDetailDialog = memo(() => {
     </>
   );
 });
+
+RepoDetailDialog.displayName = "RepoDetailDialog";
