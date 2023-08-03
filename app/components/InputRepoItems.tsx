@@ -49,7 +49,7 @@ export const InputRepoItems = memo(() => {
   return (
     <div className="mt-4 flex justify-center items-center">
       <input
-        className="border-2 rounded border-slate-200 focus:outline-1 outline-cyan-400 text-md md:text-lg p-1 mr-4"
+        className="border-2 rounded border-slate-200 focus:outline-1 outline-cyan-400 text-base md:text-lg p-1 mr-4"
         type="text"
         onChange={handleChange}
         onKeyDown={pressEnter}
