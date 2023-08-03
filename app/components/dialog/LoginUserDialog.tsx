@@ -1,6 +1,6 @@
 "use client";
 import { useRecoilState, useRecoilValue } from "recoil";
-import Link from 'next/link'
+import Link from "next/link";
 import Image from "next/image";
 
 import { isUserDialogOpen } from "@/app/state/isUserDialogOpen";
@@ -11,8 +11,8 @@ import { User, UserRepos } from "@/app/types/types";
 export const LoginUserDialog = () => {
   const [isOpen, setIsOpen] = useRecoilState<boolean>(isUserDialogOpen);
   const userInfo = useRecoilValue<User>(loginUserInfo);
-  const repos = useRecoilValue<Array<UserRepos>>(loginUserRepos);
-  console.log(repos);
+  const userRepos = useRecoilValue<Array<UserRepos>>(loginUserRepos);
+  console.log(userRepos);
 
   const handleExceptClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
@@ -60,22 +60,26 @@ export const LoginUserDialog = () => {
             </p>
             <p className="mt-3 text-sm md:text-lg">リポジトリ一覧</p>
             <ul className="mt-2">
-              {repos.map((repo) => (
-                <li
-                  key={repo.id}
-                  className="border rounded bg-white mt-4 p-2 md:p-4 shadow"
-                >
-                  <p>{repo.name}</p>
-                  <Link
-                    className="text-xs md:text-base decoration-cyan-500 text-cyan-500 hover:opacity-70 break-words"
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+              {userRepos.length !== 0 ? (
+                userRepos.map((repo) => (
+                  <li
+                    key={repo.id}
+                    className="border rounded bg-white mt-4 p-2 md:p-4 shadow"
                   >
-                    {repo.html_url}
-                  </Link>
-                </li>
-              ))}
+                    <p>{repo.name}</p>
+                    <Link
+                      className="text-xs md:text-base decoration-cyan-500 text-cyan-500 hover:opacity-70 break-words"
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {repo.html_url}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <p className="mt-8">リポジトリ一覧取得中...</p>
+              )}
             </ul>
             <button
               className="absolute top-4 right-4 p-1 text-xs md:text-base text-white rounded bg-cyan-500 hover:opacity-70"

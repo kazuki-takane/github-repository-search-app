@@ -7,6 +7,9 @@ export const searchRepos = async (inputValue: string) => {
   const res = await fetch(
     `https://api.github.com/search/repositories?q=${inputValue}`
   );
+  if (!res.ok) {
+    throw new Error("Failed to fetch repositories");
+  }
   const result = await res.json();
   const resultItems = await result.items;
   return resultItems;

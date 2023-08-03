@@ -6,13 +6,13 @@ import { RepoListItem } from "./RepoListItem";
 import { Pagination } from "./Pagination";
 import { numOfPagesInRepos, searchedRepos } from "../state/searchedRepos";
 import { currentPage } from "../state/currentPage";
-import { isSearched } from "../state/isSearched";
+import { isSearching } from "../state/isSearching";
 import { RepoData } from "../types/types";
 
 export const RepoList = () => {
   const repos = useRecoilValue<Array<RepoData>>(searchedRepos);
   const numOfPages = useRecoilValue<number>(numOfPagesInRepos);
-  const haveSearched = useRecoilValue<boolean>(isSearched);
+  const searching = useRecoilValue<boolean | null>(isSearching);
   const [numOfCurrentPage, setNumOfCurrentPage] =
     useRecoilState<number>(currentPage);
   console.log(repos);
@@ -21,6 +21,7 @@ export const RepoList = () => {
 
   return (
     <div className="mt-8">
+      {searching && <p>検索中...</p>}
       {repos.length ? (
         <div>
           <ul>
@@ -35,7 +36,10 @@ export const RepoList = () => {
           />
         </div>
       ) : (
-        <p>{haveSearched ? "見つかりませんでした" : ""}</p>
+        <div>
+          {searching === null && <p></p>}
+          {searching === false && <p>見つかりませんでした</p>}
+        </div>
       )}
     </div>
   );
